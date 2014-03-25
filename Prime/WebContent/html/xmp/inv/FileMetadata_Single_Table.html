@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Data Analytics</title>
+	
+
+<script type="text/javascript" src="dataAnalytics.js"></script>
+
+   <script type="text/javascript">
+    dojo.require("dojo.parser");
+    dojo.require("dijit.dijit");
+  dojo.require("xwt.xwt");
+
+	dojo.require("xwt.widget._ConfigureTheme");
+	dojo.require("dijit.form.Button");
+       
+			dojo.require("dojox.charting.Chart");
+			dojo.require("xwt.widget.charting.plot2d.Grid");
+			dojo.require("dojox.charting.plot2d.Bars");
+			dojo.require("dojox.charting.axis2d.Default");
+			dojo.require("dojox.gfx.gradutils");
+			dojo.require("dojox.charting.Theme");
+			dojo.require("dojox.charting.themes.gradientGenerator");
+			dojo.require("dojox.charting.action2d.MoveSlice");
+			dojo.require("xwt.widget.charting.widget.Legend");
+			dojo.require("xwt.widget.charting.themes.Prime");
+			dojo.require("xwt.widget.charting.plot2d.Pie");
+			dojo.require("xwt.widget.charting.action2d.Highlight");
+			dojo.require("xwt.widget.charting.action2d.Datatip");
+			dojo.require("xwt.widget.form.FilteringSelect");
+            dojo.require("xwt.widget.form.DropDown");
+            dojo.require("dojox.charting.plot2d.Areas");
+            dojo.require("dojox.charting.plot2d.Default");
+            dojo.require("dojox.charting.plot2d.Lines");
+            dojo.require("xwt.widget.charting.plot2d.ThresholdLines");
+            dojo.require("dojox.charting.plot2d.ClusteredColumns");
+            dojo.require("xwt.widget.charting.axis2d.TextOnly");
+            dojo.require("dojo.data.ItemFileReadStore");
+            dojo.require("dijit.layout.ContentPane");
+            dojo.require("xwt.widget.table.GlobalToolbar");
+            dojo.require("xwt.widget.table.Table");
+            dojo.require("xwt.widget.visualize.tree.Tree");
+			
+     </script> 
+      <script type="text/javascript">
+      var treeDataUrl = "html/xmp/inv/nodetree.json";
+     dojo.addOnLoad(function(){
+ 	          
+    	    pieChart = new dojox.charting.Chart("chartpi");
+    		pieChart.setTheme(xwt.widget.charting.themes.Prime).addPlot("default", {
+    			type: xwt.widget.charting.plot2d.Pie,
+    			labelStyle: "columns",
+    			htmlLabels: false,
+    			startAngle: -90
+    		});
+    		
+			// Show the data tip on the labels with a custom text function
+			var a2d = [
+				new xwt.widget.charting.action2d.Datatip(pieChart, "default", {showOn: ["labels"], text: function(o) { 
+					return "[" + o.label + '] -- Peformance comparison'; 
+				}}),
+			
+				// Also show datatips on the slices and use the tooltip text in the data.
+				new xwt.widget.charting.action2d.Datatip(pieChart, "default", {showOn: ["slice"], atMousePoint: true}),					
+				// Add in pie highlighting too.
+				new xwt.widget.charting.action2d.Highlight(pieChart, "default"),					
+				// Add in slice move on hover over
+				new dojox.charting.action2d.MoveSlice(pieChart, "default")
+			];
+			
+			legendpi = new xwt.widget.charting.widget.Legend({
+			chart: pieChart,
+			horizontal:true
+		}, "legendpi");
+		
+		
+			// Clean up events when chart is nuked.
+			var c = dojo.connect(pieChart, "destroy", function(){
+				dojo.disconnect(c);
+				dojo.forEach(a2d, function(a){
+					if(a && a.destroy){
+						a.destroy();
+					}
+				});
+				a2d = null;
+			});
+			
+			var g = dojox.charting.Theme.generateGradient;
+			
+		    reloadCharts();
+		        
+			          
+     });
+     </script>
+     
+
+</head>
+<body class="prime xwtNotification">
+<table width="1300px;" style="width:1300px;">
+<tr><td width="550px"  style="padding-bottom:30px;width:550px;"><select 	onChange="reloadCharts();" name="trend" dojoType="xwt.widget.form.DropDown"  queryExpr="*" highlightMatch="none" autocomplete="false" class="iscComboBoxClass" id="trend" style="width:500px;">
+					<option value="IVSP">Interactive Video Services</option>
+						<option value="MEM">Memory Utilization</option>
+						<option value="CPU">CPU Utilization</option>
+						</select>
+						</td><td width="750px" style="width:750px;">
+		<!-- start rating -->				
+						</td>
+						</tr>
+						<tr>
+						<td colspan="2">
+						<span style="align:left"><b style="font-size:16px;">Trends using Big Data</b></span>
+						
+						</td>
+						</tr>
+<tr>
+<td>
+                          <div  id="legendpi"></div> </td>
+                            <td>
+                          <div id="legendbc"></div></td>
+                          </tr>
+                   <tr>
+                   <td>   <div id="chartpi" ></div></td>
+                 <td><div id="chartbc"></div></td> 
+                                    
+                      </tr>
+                      
+                      <tr>
+                      <td colspan="2"  height="500px" style="height:500px;">
+                      <table><tr>
+                      <td style="overflow:auto; height:500px;width:450px;" >
+          	
+				<div dojoType="dijit.layout.ContentPane" region="center" scrolling="yes"
+			style="width: 100%; height: 100%;"
+			splitter="false" >
+					<div id="globalce" dojoType="xwt.widget.table.GlobalToolbar" title="Cluster Nodes"  tableId="tablece" displayTotalRecords="true" ></div>
+			
+						
+						<table id="tablece" dojoType="xwt.widget.table.Table" jsId="tablece"
+		 query="''" rowsPerPage=25 	structure="dataAnalysisCols" store="dataAnalysisStore"
+				region="center"  style="width:100%">
+						</table>
+						
+						
+			</div></td><td>
+			  <div id="testTree" data-dojo-type="xwt/widget/visualize/tree/Tree" data-dojo-props='dataUrl: treeDataUrl, width: 625'></div>
+   
+			
+                      </td></tr>
+                    </table>
+                  </td>
+                    
+                      
+                      </tr>
+                      </table>
+</body>
+</html>

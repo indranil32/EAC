@@ -1,0 +1,37 @@
+{
+	"name": "Prime Dev",
+	"type": "Minor",
+	"children": [
+		{
+			"name": "tom-ucs[EC]",
+			"type": "Minor"
+		}, {
+			"name": "dn2[Linux Datanode]",
+			"type": "Minor"
+		}, {
+			"name": "tintin-ec[EC]",
+			"type": "Clear"
+		}, {
+			"name": "tintin-ecs-mgmt[ECS Node]",
+			"type": "Clear",
+			"children": [
+				{
+					"name": "tintin-svc",
+					"type": "Clear"
+				}
+			]
+		}, {
+			"name": "samba-mgmt[ECS Node]",
+			"type": "Clear",
+			"children": [
+				  {
+					"name": "samba-svc",
+					"type": "Clear"
+				}
+			]
+		}, {
+			"name": "devjbossslave1[IVSP Node]",
+			"type": "Clear"
+		}
+	]
+}
