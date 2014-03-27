@@ -12,6 +12,8 @@
  */
 package com.cisco.eac.pluginmanager;
 
+import java.io.IOException;
+
 import com.cisco.analytics.cluster.DTO;
 
 /**
@@ -19,6 +21,6 @@ import com.cisco.analytics.cluster.DTO;
  *
  */
 public interface IPluginManager {
-    public DTO run(int usecase, int depth);
+    public DTO run(String usecase, String others) throws IOException;
     public DTO search(String commadelimKeyWords);
 }

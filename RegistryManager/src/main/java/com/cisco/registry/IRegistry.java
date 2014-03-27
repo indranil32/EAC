@@ -12,12 +12,14 @@
  */
 package com.cisco.registry;
 
+import java.io.IOException;
+
 /**
  * IRegistry - 
  *
  */
 public interface IRegistry {
-    public String getProgram(int usecase);
-    public String getInputPath();
-    public String getOutpath();
+    public String getProgram(String usecase) throws IOException;
+    public String getInputPath(String usecase) throws IOException;
+    public String getOutpath(String usecase) throws IOException;
 }

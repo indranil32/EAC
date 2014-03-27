@@ -1,0 +1,13 @@
+#################################
+#								#
+#		  create this			#
+#			locations			#
+#								#
+#################################
+
+HADOOP_HOME=/usr/lib/hadoop/
+USE_CASES=CMD2K_REBOOTS
+CMD2K_REBOOTS_INPUT=/cmd2k/logs/
+CMD2K_REBOOTS_OUTPUT=/cmd2k/out/
+JAR=/usr/lib/hadoop/mr/CMD2K_REBOOTS.jar
+SCRIPT=/usr/lib/hadoop/mr/run.sh

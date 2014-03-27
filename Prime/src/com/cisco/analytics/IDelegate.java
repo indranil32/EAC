@@ -12,10 +12,11 @@
  */
 package com.cisco.analytics;
 
+import javax.ws.rs.core.Response;
 /**
  * IDelegate - 
  *
  */
 public interface IDelegate {
-
+	public Response run(String usecase, String others);
 }

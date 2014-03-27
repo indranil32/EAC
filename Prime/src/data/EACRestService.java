@@ -32,7 +32,7 @@ import com.google.gson.Gson;
  * 
  */
 
-public class BigDataService { 
+public class EACRestService { 
 
 	private static final String IVSP = "IVSP";
 	private static final String LOG = "LOG";
