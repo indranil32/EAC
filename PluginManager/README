@@ -11,3 +11,26 @@ CMD2K_REBOOTS_INPUT=/cmd2k/logs/
 CMD2K_REBOOTS_OUTPUT=/cmd2k/out/
 JAR=/usr/lib/hadoop/mr/CMD2K_REBOOTS.jar
 SCRIPT=/usr/lib/hadoop/mr/run.sh
+
+
+#################################
+#								#
+#			Format				#
+#								#
+#################################
+
+Identifier(PK) 		RestOfTheCoulmns
+PID					Timestamp:=:IP:=:Reason
+1123				12/01/2014:=:10.78.203.90:=:OCAP Reboot		
+
+
+#################################
+#								#
+#			Utility				#
+#								#
+#################################
+hadoop file read
+hadoop file write
+hadoop file append
+streaming API
+

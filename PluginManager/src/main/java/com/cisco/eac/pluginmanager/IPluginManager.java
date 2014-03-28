@@ -21,6 +21,6 @@ import com.cisco.analytics.cluster.DTO;
  *
  */
 public interface IPluginManager {
-    public DTO run(String usecase, String others) throws IOException;
+    public DTO run(String usecase, String others) throws Exception;
     public DTO search(String commadelimKeyWords);
 }

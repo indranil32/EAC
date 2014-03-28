@@ -1,3 +1,4 @@
+import com.cisco.analytics.EACRestService;
 import com.cisco.analytics.charts.*;
 import com.cisco.analytics.cluster.*;
 import com.cisco.analytics.tables.*;
@@ -8,17 +9,17 @@ public class Test {
 
 
 	public static void main(String[] args) {
-		DTO dto=new DTO();
-
+		/*DTO dto=new DTO();
 		dto.setTables(buildTables());
 		dto.setCharts(buildCharts());
 		dto.setClusters(buildClusters());
 		dto.setMsgCode(0);
-		dto.setMsgDesc("Success");
-		
-		Gson gson = new Gson();
-		String json = gson.toJson(dto);
-
+		dto.setMsgDesc("Success");*/
+		EACRestService eac = new EACRestService();
+		//DTO dto=(DTO) eac.run("CMD2K_REBOOTS", null).getEntity();
+		//Gson gson = new Gson();
+		//String json = gson.toJson(dto);
+		String json = (String) eac.run("CMD2K_REBOOTS", null).getEntity();
 		System.out.println(json);
 	}
 
@@ -91,7 +92,7 @@ public class Test {
 		cc.setType("Clear");
 		List<Cluster> children=new ArrayList<Cluster>();
 		children.add(cc);
-		c.setChildren(children);
+		//c.setChildren(children);
 		clr.add(c);
 		return clr;
 	}

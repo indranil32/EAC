@@ -88,7 +88,8 @@ public class MSORegistry extends  AbstractRegistry implements Constants {
 	@Override
 	public void loadResourceDescription() throws IOException {
 		prop = new Properties();
-		FileInputStream inStream = new FileInputStream(RESOURCES);
+		//FileInputStream inStream = new FileInputStream(RESOURCES);
+		FileInputStream inStream = new FileInputStream("C:\\Users\\imajumde\\git\\EAC\\RegistryManager\\src\\main\\resources\\ResourceDescription.properties");
 		prop.load(inStream);
 		inStream.close();
 	}

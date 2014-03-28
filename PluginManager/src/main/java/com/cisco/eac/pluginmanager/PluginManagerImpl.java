@@ -44,7 +44,7 @@ public final class PluginManagerImpl implements IPluginManager {
 	 * @see com.cisco.eac.pluginmanager.IPluginManager#run(String, String)
 	 */
 	@Override
-	public DTO run(String usecase, String others) throws IOException {
+	public DTO run(String usecase, String others) throws Exception {
 		PluginManagerHelper helper = AbstractFactroy.getInstanceOfPluginManagerHelper();
 		FileInputStream file = helper.run(helper.findExec(usecase),helper.findInput(usecase),helper.findOuput(usecase));
 		DTO dto = helper.format(file, DTO.class);

@@ -19,4 +19,5 @@ public interface Constants {
 	String JAVA_HOME = "JAVA_HOME";
 	String EXEC_JAR = "run.sh";
 	String LAST_JOB_OUTPUT = "";
+	String UNIVERSAL_DELIMETER=":=:";
 }
