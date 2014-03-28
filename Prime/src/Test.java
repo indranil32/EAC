@@ -1,4 +1,4 @@
-import com.cisco.analytics.EACRestService;
+import com.cisco.analytics.eac.EACRestService;
 
 public class Test {
 
