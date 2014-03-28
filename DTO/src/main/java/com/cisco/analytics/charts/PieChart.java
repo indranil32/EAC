@@ -15,11 +15,7 @@ package com.cisco.analytics.charts;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "piechart")
 public class PieChart extends Chart {
 
 	private List<String> pieYTooltips;

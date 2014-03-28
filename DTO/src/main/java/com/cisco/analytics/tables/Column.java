@@ -13,14 +13,12 @@
 
 package com.cisco.analytics.tables;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "column")
 public class Column {
 
 	private String attr;
 	private String label;
-	private int width;
+	private int width=300;
 	private boolean sortable=true;
 	private boolean editable;
 	private boolean hidden;

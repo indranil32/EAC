@@ -12,26 +12,16 @@
  */
 package com.cisco.analytics.utils;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  * ERRORCODE - 
  *
  */
-@XmlType(name="errorcode")
-@XmlEnum
 public enum ERRORCODE {
-    @XmlEnumValue(value = "200")
     SUCCESS(200,"Success"),
-    @XmlEnumValue(value = "201")	
     NODATA(201,"No Data Found"),    
-    @XmlEnumValue(value = "500")
     SERVERERROR(500, "Internal Server Error"),    
-    @XmlEnumValue(value = "503")
     TIMEDOUT(503, "Time Out"),    
-    @XmlEnumValue(value = "404")
     UNAVAILABLE(404,"Not Found");
     
     private final int code;

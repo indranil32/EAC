@@ -12,19 +12,10 @@
  */
 package com.cisco.analytics.charts;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
 
 
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "chart")
-@XmlSeeAlso(value = { ChartType.class })
 public abstract class Chart {
 
-    @XmlElement(name="type")
     private ChartType type;
 
     public ChartType getType() {

@@ -13,19 +13,11 @@
 
 package com.cisco.analytics.cluster;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="cluster")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Cluster {
     	
-    	@XmlElement(name="name",nillable=false,required=true)
 	private String name;
-    	@XmlElement(name="type",nillable=false,required=true)
-    	private String type;
+   	private String type;
 	
 	public String getName() {
 		return name;

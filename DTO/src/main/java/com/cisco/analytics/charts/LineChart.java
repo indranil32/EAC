@@ -15,9 +15,7 @@ package com.cisco.analytics.charts;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "linechart")
 public class LineChart extends Chart {
  
 	private int lineXMajorTick;

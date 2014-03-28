@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "table")
 public class Table {
 
 	private List<Column> cols;

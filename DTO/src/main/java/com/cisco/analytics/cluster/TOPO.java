@@ -14,23 +14,13 @@ package com.cisco.analytics.cluster;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-
 /**
  * TOPO - 
  *
  */
 
-@XmlRootElement(name = "topo")
-@XmlSeeAlso(value={Cluster.class})
-@XmlAccessorType(XmlAccessType.FIELD)
 public class TOPO {
     
-    @XmlElement(name="children")
     private List<Cluster> children;
 
     public List<Cluster> getChildren() {

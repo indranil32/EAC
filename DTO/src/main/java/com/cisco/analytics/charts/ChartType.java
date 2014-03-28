@@ -13,17 +13,10 @@
 
 package com.cisco.analytics.charts;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
 
 
-@XmlType(name = "charttype")
-@XmlEnum
 public enum ChartType {
-    @XmlEnumValue(value = "PIE")
     PIE("PIE"), 
-    @XmlEnumValue(value = "LINE")
     LINE("LINE");
 
     private final String value;
