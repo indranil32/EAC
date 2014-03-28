@@ -20,4 +20,5 @@ public interface Constants {
 	String EXEC_JAR = "run.sh";
 	String LAST_JOB_OUTPUT = "";
 	String UNIVERSAL_DELIMETER=":=:";
+	String UNIVERSAL_DELIMETER_PROP="UNIVERSAL_DELIMETER";
 }

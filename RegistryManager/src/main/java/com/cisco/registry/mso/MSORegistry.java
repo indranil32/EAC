@@ -25,6 +25,7 @@ import com.cisco.registry.AbstractRegistry;
  */
 public class MSORegistry extends  AbstractRegistry implements Constants {
 
+	
 	/* (non-Javadoc)
 	 * @see com.cisco.registry.IRegistry#getProgram(int)
 	 */
@@ -92,6 +93,15 @@ public class MSORegistry extends  AbstractRegistry implements Constants {
 		FileInputStream inStream = new FileInputStream("C:\\Users\\imajumde\\git\\EAC\\RegistryManager\\src\\main\\resources\\ResourceDescription.properties");
 		prop.load(inStream);
 		inStream.close();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.cisco.registry.IRegistry#getResourceDescriptor()
+	 */
+	@Override
+	public Properties getResourceDescriptor() throws IOException {
+		loadResourceDescription();
+		return prop;
 	}
 
 }

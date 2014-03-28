@@ -11,7 +11,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 import com.cisco.analytics.cluster.DTO;
 import com.cisco.analytics.constants.Constants;
@@ -101,8 +100,9 @@ public class PluginManagerHelper implements Constants{
 		 * @param file
 		 * @param type 
 		 * @return
+		 * @throws IOException 
 		 */
-		public DTO format(FileInputStream file, Class<?> type) {
+		public DTO format(FileInputStream file, Class<?> type) throws IOException {
 			DTO dto = new DTO();
 			List<Table> tables = new ArrayList<Table>(); 
 			Table table = new Table();
@@ -118,14 +118,14 @@ public class PluginManagerHelper implements Constants{
 				// PID:=:{data} TIMESTAMP:=:{data}:=:IP:=:{data}:=:REASON:=:{data}
 				if (foundcolumns) {
 					// getting columns
-					String cols[] = line.split(UNIVERSAL_DELIMETER);
+					String cols[] = line.split(registry.getResourceDescriptor().getProperty(UNIVERSAL_DELIMETER_PROP, UNIVERSAL_DELIMETER));
 					for (int i = 0 ; i < cols.length ; i=i+2) {
 						colString.add(cols[i].trim().toUpperCase());
 					}
 					foundcolumns = false;
 				}
 				//getting data
-				String data[] = line.split(UNIVERSAL_DELIMETER);
+				String data[] = line.split(registry.getResourceDescriptor().getProperty(UNIVERSAL_DELIMETER_PROP, UNIVERSAL_DELIMETER));
 				System.out.println(data.length);
 				for (int i = 0 ; i < data.length ; i=i+2) {
 					System.out.println(data[i] + " :: " + data[i+1]);
