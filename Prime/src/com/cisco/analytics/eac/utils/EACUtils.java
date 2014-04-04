@@ -30,7 +30,7 @@ public class EACUtils {
 		DTO dto = new DTO();
 		dto.setMsgDesc(message);
 		dto.setMsgCode(ERRORCODE.SERVERERROR);
-		builder.entity(dto);
+		builder.entity(gson.toJson(dto));
 		builder.type(MediaType.APPLICATION_JSON);
 		return builder.build();
 	}
