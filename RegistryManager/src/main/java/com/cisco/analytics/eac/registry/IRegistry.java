@@ -21,6 +21,7 @@ import java.util.Properties;
  */
 public interface IRegistry {
     public String getProgram(String usecase) throws IOException;
+    public String getEnvProgram(String usecase) throws IOException;
     public String getInputPath(String usecase) throws IOException;
     public String getOutpath(String usecase) throws IOException;
     public Properties getResourceDescriptor() throws IOException;

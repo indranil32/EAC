@@ -141,6 +141,9 @@ public class RebootStats {
 	job.setOutputValueClass(Text.class);
 	FileInputFormat.addInputPath(job, new Path(args[0]));
 	FileOutputFormat.setOutputPath(job, new Path(args[1]));
+	int exit  = job.waitForCompletion(true);
+	// call the read/write program
+	ReadOutput.read(new Path(args[1], "../hadoop-2.2.0/last/analysis.out");
 	System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 

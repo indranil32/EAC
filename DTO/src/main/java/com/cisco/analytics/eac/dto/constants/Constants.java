@@ -22,4 +22,7 @@ public interface Constants {
 	String UNIVERSAL_DELIMETER=":=:";
 	String UNIVERSAL_DELIMETER_PROP="UNIVERSAL_DELIMETER";
 	String SPACE = " ";
+	String UNDERSCORE = "_";
+	String SCRIPT = "SCRIPT";
+	
 }

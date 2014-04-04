@@ -34,12 +34,12 @@ public class MSORegistry extends  AbstractRegistry implements Constants {
 		String program = null;
 		loadResourceDescription();
 		String usecases = prop.getProperty(USE_CASES);
-		String hadoopHome = prop.getProperty(HADOOP_HOME);
+		//String hadoopHome = prop.getProperty(HADOOP_HOME);
 		String mr = prop.getProperty(MR);
 		for (String ucase : usecases.split(",")) {
 			if (usecase.equalsIgnoreCase(usecase)) {
 				// /usr/lib/hadoop/mr/CMD2K_REBOOT.jar
-				program = hadoopHome + mr + ucase.toUpperCase() + SUFFIX_JAR;
+				program = mr + ucase.trim().toUpperCase() + SUFFIX_JAR;
 			}
 		}
 		return program;
@@ -55,12 +55,12 @@ public class MSORegistry extends  AbstractRegistry implements Constants {
 		String usecases = prop.getProperty(USE_CASES);
 		for (String ucase : usecases.split(",")) {
 			if (usecase.equalsIgnoreCase(usecase)) {
-				// /usr/lib/hadoop/mr/CMD2K_REBOOT.jar
-				input = prop.getProperty(ucase+INPUT);
+				// /cmd2k/logs
+				input = prop.getProperty(ucase.trim().toUpperCase() + INPUT);
 			}
 		}
 		if (null == input)	// DEFAULT : /use-casename/input/
-			input = usecase+INPUT;
+			input = usecase.trim().toUpperCase() + INPUT;
 		return input;
 	}
 
@@ -74,13 +74,33 @@ public class MSORegistry extends  AbstractRegistry implements Constants {
 		String usecases = prop.getProperty(USE_CASES);
 		for (String ucase : usecases.split(",")) {
 			if (usecase.equalsIgnoreCase(usecase)) {
-				// /usr/lib/hadoop/mr/CMD2K_REBOOT.jar
-				output = prop.getProperty(ucase+OUTPUT) + "/" +Math.random();
+				// /cmd2k/out/
+				output = prop.getProperty(ucase.trim().toUpperCase() + OUTPUT);
 			}
 		}
-		if (null == output)	// DEFAULT : /use-casename/input/
-			output = usecase+OUTPUT;
+		if (null == output)	// DEFAULT : /use-casename/output/
+			output = usecase.trim().toUpperCase() + OUTPUT;
 		return output;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.cisco.analytics.eac.registry.IRegistry#getEnvProgram(java.lang.String)
+	 */
+	@Override
+	public String getEnvProgram(String usecase) throws IOException {
+		String env = null;
+		loadResourceDescription();
+		env = prop.getProperty(SCRIPT);
+		if (null == env) {
+			String usecases = prop.getProperty(USE_CASES);
+			for (String ucase : usecases.split(",")) {
+				if (usecase.equalsIgnoreCase(usecase)) {
+					// /usr/lib/hadoop-2.0.0/run.sh
+					env = prop.getProperty(ucase.trim().toUpperCase() + UNDERSCORE + SCRIPT);
+				}
+			}
+		}
+		return env;
 	}
 
 	/* (non-Javadoc)
@@ -89,8 +109,7 @@ public class MSORegistry extends  AbstractRegistry implements Constants {
 	@Override
 	public void loadResourceDescription() throws IOException {
 		prop = new Properties();
-		//FileInputStream inStream = new FileInputStream(RESOURCES);
-		FileInputStream inStream = new FileInputStream("C:\\Users\\imajumde\\git\\EAC\\RegistryManager\\src\\main\\resources\\ResourceDescription.properties");
+		FileInputStream inStream = new FileInputStream(RESOURCES);
 		prop.load(inStream);
 		inStream.close();
 	}

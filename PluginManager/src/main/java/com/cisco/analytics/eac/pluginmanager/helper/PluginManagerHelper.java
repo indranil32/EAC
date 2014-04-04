@@ -69,6 +69,15 @@ public class PluginManagerHelper implements Constants{
 		 * @return
 		 * @throws IOException 
 		 */
+		public String findEnv(String usecase) throws IOException {
+			return registry.getProgram(usecase);
+		}
+		
+		/**
+		 * @param usecase 
+		 * @return
+		 * @throws IOException 
+		 */
 		public String findInput(String usecase) throws IOException {
 			return registry.getInputPath(usecase);
 		}
@@ -112,8 +121,7 @@ public class PluginManagerHelper implements Constants{
              int exit = p.waitFor();
              System.out.println("Exit : "+ exit);
              if (exit != 0) throw new Exception("Analysis could not be completed!!");
-             new FileInputStream(LAST_JOB_OUTPUT);
-             //      return new FileInputStream(new File("C:\\Users\\imajumde\\git\\EAC\\PluginManager\\src\\main\\resources\\analysis.out"));
+             return new FileInputStream(LAST_JOB_OUTPUT);
      }
 
 		/**
@@ -135,7 +143,7 @@ public class PluginManagerHelper implements Constants{
 				// one row
 				Map<String, String> map = new LinkedHashMap<String, String>();
 				String line = scan.nextLine();
-				// PID:=:{data} TIMESTAMP:=:{data}:=:IP:=:{data}:=:REASON:=:{data}
+				// PID:=:{data} :=:TIMESTAMP:=:{data}:=:IP:=:{data}:=:REASON:=:{data}
 				if (foundcolumns) {
 					// getting columns
 					String cols[] = line.split(registry.getResourceDescriptor().getProperty(UNIVERSAL_DELIMETER_PROP, UNIVERSAL_DELIMETER));

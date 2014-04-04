@@ -15,11 +15,11 @@ import org.apache.hadoop.util.*;
  */
 public class ReadOutput {
 	
-	public static void main (String[] args) {
+	/*public static void main (String[] args) {
 		read(args[0]);
-	}
+	}*/
 	
-	public static void read(String path) {
+	public static void read(String path, String writeToPath) {
         	try{
         		Path pt=new Path(path);
         		FileSystem fs = FileSystem.get(new Configuration());
@@ -32,7 +32,7 @@ public class ReadOutput {
 				System.out.println(line);
                 		line=br.readLine();
 	        	}
-        		write(content.toString(), "../hadoop-2.2.0/last/analysis.out");
+        		write(content.toString(), writeToPath /*"../hadoop-2.2.0/last/analysis.out"*/);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
