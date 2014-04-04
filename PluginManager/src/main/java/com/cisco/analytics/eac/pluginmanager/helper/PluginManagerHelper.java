@@ -3,7 +3,6 @@
  */
 package com.cisco.analytics.eac.pluginmanager.helper;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +40,7 @@ public class PluginManagerHelper implements Constants{
 		private PluginManagerHelper() {
 			// TODO this also should be dynamic to support others registry
 			registry = AbstractFactroy.getInstanceOfRegistry(MSORegistry.class);
+			
 		}
 		
 		// factory instance
@@ -89,12 +89,32 @@ public class PluginManagerHelper implements Constants{
 		 * @return 
 		 * @throws Exception 
 		 */
-		public FileInputStream run(String exec, String input, String ouput) throws Exception {
-			//int exit = Runtime.getRuntime().exec(exec).waitFor();
-			//if (exit != 0) throw new Exception("Analysis could not be completed!!");
-			//return new FileInputStream(LAST_JOB_OUTPUT);
-			return new FileInputStream(new File("C:\\Users\\imajumde\\git\\EAC\\PluginManager\\src\\main\\resources\\analysis.out"));
-		}
+		public FileInputStream run(String env, String exec, String input, String output) throws Exception {
+			 System.out.println("Running...");
+			 Process p = null;
+			 if (System.getenv("JAVA_HOME").isEmpty() || System.getenv("HADOOP_COMMON_HOME").isEmpty()) {
+            	 p = Runtime.getRuntime().exec(env);
+                 p.waitFor();
+                 System.out.println("JAVA_HOME - " + System.getenv("JAVA_HOME"));
+                 System.out.println("HADOOP_COMMON_HOME - " +System.getenv("HADOOP_COMMON_HOME"));
+             } else {
+            	 System.out.println("JAVA_HOME - " + System.getenv("JAVA_HOME"));
+            	 System.out.println("HADOOP_COMMON_HOME - " +System.getenv("HADOOP_COMMON_HOME"));
+             }
+             p = null;
+             p = Runtime.getRuntime().exec(exec + SPACE + input + SPACE + output);
+             error e = new error(p);
+             Thread e_t = new Thread(e);
+             e_t.start();
+             info i = new info(p);
+             Thread i_t = new Thread(i);
+             i_t.start();
+             int exit = p.waitFor();
+             System.out.println("Exit : "+ exit);
+             if (exit != 0) throw new Exception("Analysis could not be completed!!");
+             new FileInputStream(LAST_JOB_OUTPUT);
+             //      return new FileInputStream(new File("C:\\Users\\imajumde\\git\\EAC\\PluginManager\\src\\main\\resources\\analysis.out"));
+     }
 
 		/**
 		 * @param file
@@ -162,4 +182,48 @@ public class PluginManagerHelper implements Constants{
 			}
 			return cols;
 		}
+}
+
+
+class error implements Runnable {
+	Process  p = null;
+	public error(Process  p) {
+		this.p = p;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		try {
+            Scanner error = new Scanner(p.getErrorStream());
+            if (error.hasNext()) System.out.println("ERROR : " + error.nextLine());
+            error.close();
+		} catch (Exception ex) {
+            ex.printStackTrace();
+		}
+	}
+	
+}
+
+
+class info implements Runnable {
+	Process  p = null;
+	public info(Process  p) {
+		this.p = p;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		try {
+            Scanner info = new Scanner(p.getInputStream());
+            if (info.hasNext()) System.out.println("ERROR : " + info.nextLine());
+            info.close();
+            //OutputStream stdout = p.getOutputStream();
+		} catch (Exception ex) {
+            ex.printStackTrace();
+		}
+	}
 }

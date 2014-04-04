@@ -21,4 +21,5 @@ public interface Constants {
 	String LAST_JOB_OUTPUT = "";
 	String UNIVERSAL_DELIMETER=":=:";
 	String UNIVERSAL_DELIMETER_PROP="UNIVERSAL_DELIMETER";
+	String SPACE = " ";
 }
