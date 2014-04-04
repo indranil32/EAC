@@ -14,7 +14,11 @@ public class MRDriver {
 	      pgd.addClass("ivspassetNew", IVSPAssetMRNew.class, 
 	              "A map/reduce program that manipulates the IVSP assets data New.");
 	      pgd.addClass("cpuUtilization", MemoryUtilization.class, 
-	              "A map/reduce program that manipulates the CPU Utilization of a machine.");
+	              "A map/reduce program that manipulates the CPU Utilization of a machine."); 
+	      pgd.addClass("rebootstats", RebootStats.class, 
+	    	              "A map/reduce program that gives reboot stastics from C2K log files.");
+	      pgd.addClass("rebootcount", RebootCount.class, 
+	              "A map/reduce program that counts the reboot occurances from C2K log files.");
 	      exitCode = pgd.run(argv);
 	    }
 	    catch(Throwable e){

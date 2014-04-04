@@ -35,6 +35,9 @@ public class ErrorCount {
 				} else if (null!=token && ""!=token && token.equalsIgnoreCase("EXCEPTION")) {
 					word.set("EXCEPTION");
 					context.write(word, one);
+				} else if (null!=token && ""!=token && token.equalsIgnoreCase("INFO")) {
+					word.set("INFO");
+					context.write(word, one);
 				}
 			}
 		}
