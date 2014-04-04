@@ -47,7 +47,7 @@ public final class PluginManagerImpl implements IPluginManager {
 	public DTO run(String usecase, String others) throws Exception {
 		PluginManagerHelper helper = AbstractFactroy.getInstanceOfPluginManagerHelper();
 		FileInputStream file = helper.run(helper.findEnv(usecase), helper.findExec(usecase)
-				,helper.findInput(usecase),helper.findOuput(usecase));
+				,helper.findInput(usecase),helper.findOuput(usecase), others);
 		DTO dto = helper.format(file, DTO.class);
 		return dto;
 	}

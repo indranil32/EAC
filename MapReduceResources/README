@@ -1,0 +1,5 @@
+1. Use universal delimiter :=: for COLUMN_NAME:=:VALUE pair
+2. At the stating of the value for a key put the universal delimiter :=:
+3. Once the job is complete call the read of ReadOutput class.
+4. The output should be self explaining for the display type
+   

@@ -24,5 +24,6 @@ public interface Constants {
 	String SPACE = " ";
 	String UNDERSCORE = "_";
 	String SCRIPT = "SCRIPT";
-	
+	String JOB_OUTPUT = "JOB_OUTPUT";
+	String LAST_JOB_DIR = "LAST_JOB_DIR";
 }

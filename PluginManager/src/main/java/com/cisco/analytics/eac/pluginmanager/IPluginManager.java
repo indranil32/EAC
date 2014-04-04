@@ -12,8 +12,6 @@
  */
 package com.cisco.analytics.eac.pluginmanager;
 
-import java.io.IOException;
-
 import com.cisco.analytics.eac.dto.cluster.DTO;
 
 /**
